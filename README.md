@@ -1,112 +1,57 @@
-Contribution: 2021-11-19 16:00
+# bsc-genesis-contracts
 
-Contribution: 2021-11-19 20:01
+This repo hold all the genesis contracts on Binance Smart chain. More details in [doc-site](https://github.com/binance-chain/docs-site/blob/add-bsc/docs/smart-chain/guides/concepts/system-contract.md).
 
-Contribution: 2021-11-19 16:02
+## Prepare
 
-Contribution: 2021-11-19 17:03
+Install dependency:
+```shell script
+npm install
+``` 
 
-Contribution: 2021-11-19 20:04
+## unit test
 
-Contribution: 2021-11-19 18:05
+Generate contracts for testing:
+```shell script
+# the first account of ganache
+node generate-system.js --mock true
+node generate-systemReward.js --mock true
+node generate-validatorset.js --mock true
+node generate-system.js --mock true
+node generate-slash.js --mock true
+node generate-crosschain.js --mock true
+node generate-tokenhub.js --mock true
+node generate-tendermintlightclient.js --mock true
+node generate-relayerincentivizecontract.js --roundSize 30 --maximumWeight 3 --mock true
+```
 
-Contribution: 2021-11-19 16:06
+Start ganache:
+```shell script
+ganache-cli --mnemonic 'clock radar mass judge dismiss just intact mind resemble fringe diary casino' --gasLimit 13000000  -e 10000
+```
 
-Contribution: 2021-11-19 19:07
+Run truffle test:
+```shell script
+truffle compile
+truffle migrate
+truffle test
+```
 
-Contribution: 2021-11-19 20:08
+Flatten all system contracts:
+```shell script
+npm run flatten
+```
 
-Contribution: 2021-11-22 19:00
+## how to generate genesis file.
+ 
+1. Edit `init_holders.js` file to alloc the initial BNB holder.
+2. Edit `validators.js` file to alloc the initial validator set.
+3. Edit `generate-validatorset.js` file to change `fromChainId` and `toChainId`,
+4. Edit `generate-tokenhub.js` file to change `refundRelayReward`, `minimumRelayFee` and `maxGasForCallingBEP20`.
+5. Edit `generate-tendermintlightclient.js` file to change `chainID` and `initConsensusStateBytes`.
+6. run ` node generate-genesis.js` will generate genesis.json
 
-Contribution: 2021-11-22 18:01
+## License
 
-Contribution: 2021-11-22 19:02
-
-Contribution: 2021-11-22 16:03
-
-Contribution: 2021-11-22 17:04
-
-Contribution: 2021-11-27 17:00
-
-Contribution: 2021-11-27 19:01
-
-Contribution: 2021-11-27 17:02
-
-Contribution: 2021-11-27 19:03
-
-Contribution: 2021-11-27 19:04
-
-Contribution: 2021-11-27 19:05
-
-Contribution: 2021-11-27 16:06
-
-Contribution: 2021-12-01 18:00
-
-Contribution: 2021-12-01 20:01
-
-Contribution: 2021-12-01 16:02
-
-Contribution: 2021-12-01 20:03
-
-Contribution: 2021-12-02 17:00
-
-Contribution: 2021-12-02 20:01
-
-Contribution: 2021-12-02 18:02
-
-Contribution: 2021-12-02 17:03
-
-Contribution: 2021-12-03 20:00
-
-Contribution: 2021-12-03 17:01
-
-Contribution: 2021-12-03 16:02
-
-Contribution: 2021-12-03 17:03
-
-Contribution: 2021-12-03 20:04
-
-Contribution: 2021-12-03 18:05
-
-Contribution: 2021-12-03 18:06
-
-Contribution: 2021-12-03 18:07
-
-Contribution: 2021-12-03 20:08
-
-Contribution: 2021-12-03 16:09
-
-Contribution: 2021-12-04 16:00
-
-Contribution: 2021-12-04 17:01
-
-Contribution: 2021-12-04 18:02
-
-Contribution: 2021-12-04 16:03
-
-Contribution: 2021-12-04 20:04
-
-Contribution: 2021-12-04 20:05
-
-Contribution: 2021-12-04 18:06
-
-Contribution: 2021-12-04 17:07
-
-Contribution: 2021-12-04 18:08
-
-Contribution: 2021-12-07 16:00
-
-Contribution: 2021-12-07 17:01
-
-Contribution: 2021-12-07 20:02
-
-Contribution: 2021-12-07 18:03
-
-Contribution: 2021-12-07 18:04
-
-Contribution: 2021-12-07 18:05
-
-Contribution: 2021-12-07 17:06
-
-Contribution: 2021-12-07 19:07
-
+The library is licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0),
+also included in our repository in the [LICENSE](LICENSE) file.
